@@ -1,4 +1,4 @@
-# CustomerRelationshipManagement
+ # CustomerRelationshipManagement
 
 This CRM represents my way of administrating clients and the projects they
 request. It includes an authentication system into the platform, projects 
@@ -167,12 +167,6 @@ of the products who are planned by the business, the products where the business
 products who are finished and are free to purchase. It represents just some queries from the database
 using the django ORM.
 
-This repo contains the project as an independent webapp but this project is also able to be integrated 
-in any python django app with a huge ease. The configuration of the app is the only thing that is 
-changing, including the URLS, extraction of settings and others. 
-
-The plugin can be found here -> ..... 
-
 ## Technologies
 
 The technologies I've used here are HTML5, CSS3, Javascript, Jquery, Bootstrap, FontAwesome,
@@ -193,7 +187,55 @@ also administrated from the control panel.
 
 ## Setup
 
+Because we talk about a plugin, you need to have a predefined app (django based app preferably) to
+implement it. If your app is not django based then it requires interoperability which is subjective for
+every project in part.
+
+If you have a django based app where you want to plugin the CRM you have to follow the next steps:
+
 * Download this repo
+* Copy all the folders from the CRMPlugin folder except ClientsManagementSystem
+* Install the apps in INSTALLED_APPS list from your settings.py file
+* Make sure you have the next lines of setup code in your settings.py
+```
+    LOGIN_REDIRECT_URL = '/client/home'
+    
+    LOGOUT_REDIRECT_URL = '/accounts/login'
+    
+    EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+    
+    EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+```
+* The home url for the CRM is
+```
+    clients-management-system/
+```
+
+* Open cmd or terminal in CustomerRelationshipManagement folder and make the migrations 
+```
+    python3 manage.py makemigrations
+```
+
+then migrate
+
+```
+    python3 manage.py migrate
+```
+
+Because it is assumed you already have an admin account, you only have to run the app
+
+```
+    python3 manage.py runserver
+```
+
+* Enjoy
+
+If you do not want to integrate the plugin in an app, you can run it as an independent app but with 
+the index view missing which means the main url ( '/' ) is not rendered. If that's your choice, 
+follow the next steps:
+
+* Download this repo
+
 * After downloading this repo you have to get a SECRET_KEY from here -> https://djecrety.ir/ and paste
 it in the settings.py file from CustomerRelationshipManagement folder. (CustomerRelationshipManagement/CustomerRelationshipManagement/settings.py)
  
@@ -221,4 +263,10 @@ run the app
 ```
     python3 manage.py runserver
 ```
+
+* The home url for the CRM is
+```
+    clients-management-system/
+```
+
 * Enjoy
