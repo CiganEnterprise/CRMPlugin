@@ -169,7 +169,7 @@ using the django ORM.
 
 ## Technologies
 
-The technologies I've used here are HTML5, CSS3, Javascript, Jquery, Bootstrap, FontAwesome,
+The technologies I've used here are HTML5, CSS3, Javascript, Jquery, Bootstrap,
 Python Django, SQL Based Database.
 
 ## Future Development
